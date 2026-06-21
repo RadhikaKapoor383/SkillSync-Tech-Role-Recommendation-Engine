@@ -13,34 +13,63 @@ st.set_page_config(
     layout="centered",
 )
 
-# -----------------------------------------------------------------------
-# Custom styling — aligned with .streamlit/config.toml palette
-#   Stormy  #494E6B   Cloud  #98878F
-#   Sunset  #985E6D   Evening #192231
-# -----------------------------------------------------------------------
 st.markdown(
     """
     <style>
-        h1, h2, h3 {
-            color: #494E6B !important;   /* Stormy */
+        :root {
+            --stormy:  #494E6B;
+            --cloud:   #98878F;
+            --sunset:  #985E6D;
+            --evening: #192231;
+            --sunset-hover: #7c4a57;
+        }
+
+        /* Sidebar text needs to flip to light since background is now dark Stormy */
+        [data-testid="stSidebar"] {
+            background-color: var(--stormy) !important;
+        }
+        [data-testid="stSidebar"] * {
+            color: #ece9e6 !important;
         }
         [data-testid="stSidebar"] h2,
         [data-testid="stSidebar"] h3 {
-            color: #192231 !important;   /* Evening */
+            color: #ffffff !important;
         }
+
+        /* Headings in main body use Stormy for hierarchy without being pure black */
+        h1, h2, h3 {
+            color: var(--stormy) !important;
+        }
+
+        /* Metric values pop in Sunset */
         [data-testid="stMetricValue"] {
-            color: #985E6D !important;   /* Sunset */
+            color: var(--sunset) !important;
         }
+
+        /* Containers/cards bordered in Cloud, not Stormy — softer separation */
         div[data-testid="stContainer"] {
-            border-color: #494E6B !important;
+            border-color: var(--cloud) !important;
         }
+
         hr {
-            border-top: 1px solid #98878F !important;  /* Cloud */
+            border-top: 1px solid var(--cloud) !important;
+        }
+
+        /* Button hover state */
+        .stButton > button:hover {
+            background-color: var(--sunset-hover) !important;
+            border-color: var(--sunset-hover) !important;
+        }
+
+        /* Link hover */
+        a:hover {
+            color: var(--sunset-hover) !important;
         }
     </style>
     """,
     unsafe_allow_html=True,
 )
+
 
 # -----------------------------------------------------------------------
 # Load artifacts (cached so they only load once)
@@ -58,6 +87,14 @@ vectorizer, tfidf_matrix, df = load_artifacts()
 # Build the full sorted list of unique skills for the multiselect widget
 all_skills_set = sorted({skill for skills in df["Skills_List"] for skill in skills})
 
+@st.cache_resource
+def get_skill_counts(df):
+    from collections import Counter
+    all_skills = [skill for skills in df["Skills_List"] for skill in skills]
+    return Counter(all_skills)
+
+
+skill_counts = get_skill_counts(df)
 
 def clean_skills_text(skills_list):
     cleaned = [
@@ -82,7 +119,19 @@ def recommend_jobs(user_skills, top_n=3):
 def recommend_with_fallback(user_skills, top_n=3):
     results = recommend_jobs(user_skills, top_n=top_n)
     if results.empty:
-        fallback = df.sample(top_n, random_state=42).reset_index(drop=True)
+        top_skill_set = set(s for s, _ in skill_counts.most_common(20))
+
+        def popularity_score(skills_list):
+            return sum(1 for s in skills_list if s in top_skill_set)
+
+        df_temp = df.copy()
+        df_temp["Popularity_Score"] = df_temp["Skills_List"].apply(popularity_score)
+
+        fallback = (
+            df_temp.sort_values("Popularity_Score", ascending=False)
+            .head(top_n)
+            .reset_index(drop=True)
+        )
         fallback["Similarity_Score"] = 0.0
         return fallback, True
     return results, False

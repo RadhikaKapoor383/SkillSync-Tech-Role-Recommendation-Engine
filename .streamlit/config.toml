@@ -1,19 +1,16 @@
 [theme]
-# SkillSync custom palette — Stormy / Cloud / Sunset / Evening
-
 base = "light"
 
-# Primary accent — used for buttons, sliders, progress bars, links (Sunset)
+# Sunset — primary accent (buttons, sliders, progress, links)
 primaryColor = "#985E6D"
 
-# Main app background (soft off-white, keeps dark text readable)
-backgroundColor = "#fceeee"
+# Soft neutral background — NOT pink, lets Sunset/Stormy do the color work
+backgroundColor = "#f7f5f3"
 
-# Sidebar / card background (Cloud, lightly used as a tint)
-secondaryBackgroundColor = "#e6c5d4"
+# Stormy — sidebar background, deep blue-gray for real contrast
+secondaryBackgroundColor = "#545664"
 
-# Main text color (Evening — the dark navy from the palette)
+# Evening — primary text
 textColor = "#192231"
 
-# Font
 font = "sans serif"
