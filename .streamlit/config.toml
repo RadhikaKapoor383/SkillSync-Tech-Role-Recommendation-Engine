@@ -1,0 +1,19 @@
+[theme]
+# SkillSync custom palette — Stormy / Cloud / Sunset / Evening
+
+base = "light"
+
+# Primary accent — used for buttons, sliders, progress bars, links (Sunset)
+primaryColor = "#985E6D"
+
+# Main app background (soft off-white, keeps dark text readable)
+backgroundColor = "#fceeee"
+
+# Sidebar / card background (Cloud, lightly used as a tint)
+secondaryBackgroundColor = "#e6c5d4"
+
+# Main text color (Evening — the dark navy from the palette)
+textColor = "#192231"
+
+# Font
+font = "sans serif"
