@@ -1,16 +1,3 @@
-"""
-SkillSync — Tech Role Recommendation Engine (Streamlit GUI)
---------------------------------------------------------------
-Run with:
-    streamlit run App.py
-
-Folder structure expected:
-    dataset/  -> IT_Job_Roles_Skills.csv
-    models/   -> vectorizer.joblib, tfidf_matrix.joblib, job_roles_processed.pkl
-    notebook/ -> Tech_Stack_Recommender.ipynb
-    App.py
-"""
-
 import re
 import joblib
 import pandas as pd
@@ -210,11 +197,11 @@ with st.sidebar:
     st.subheader(":material/account_tree: How It Works")
     st.markdown(
         """
-1. **Ingestion** — your selected skills are captured
-2. **Scoring** — skills are converted into TF-IDF vectors and compared against every job role
-3. **Sorting** — roles are ranked by Cosine Similarity score
-4. **Filtering** — only the Top-N best matches are shown
-5. **Cold-Start Fallback** — if no overlap is found, popular roles are suggested instead
+        1. **Ingestion** — your selected skills are captured
+        2. **Scoring** — skills are converted into TF-IDF vectors and compared against every job role
+        3. **Sorting** — roles are ranked by Cosine Similarity score
+        4. **Filtering** — only the Top-N best matches are shown
+        5. **Cold-Start Fallback** — if no overlap is found, popular roles are suggested instead
         """
     )
 
@@ -236,14 +223,13 @@ with st.sidebar:
     st.subheader(":material/build: Tech Stack")
     st.markdown(
         """
-- **Python** — core logic
-- **pandas** — data processing
-- **scikit-learn** — TF-IDF & Cosine Similarity
-- **Streamlit** — interactive GUI
+        - **Python** — core logic
+        - **pandas** — data processing
+        - **scikit-learn** — TF-IDF & Cosine Similarity
+        - **Streamlit** — interactive GUI
         """
     )
 
     st.divider()
 
-    st.caption("Built for **DecodeLabs Project 3: AI Recommendation Logic**")
     st.caption("SkillSync — Tech Role Recommendation Engine")
