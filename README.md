@@ -1,16 +1,69 @@
 # SkillSync — Tech Role Recommendation Engine
 
-SkillSync is a content-based AI recommendation engine that matches user skills
-to relevant tech job roles. Built using **TF-IDF feature extraction** and
-**Cosine Similarity**, it analyzes an IT job roles dataset, ranks the best-fit
-careers, and includes a cold-start fallback. Comes with full EDA, a Jupyter
-notebook pipeline, and an interactive Streamlit GUI.
+![Python](https://img.shields.io/badge/Python-3.x-blue)
+![Machine Learning](https://img.shields.io/badge/Machine%20Learning-TF--IDF-orange)
+![Streamlit](https://img.shields.io/badge/Streamlit-Deployed-red)
+![Scikit-Learn](https://img.shields.io/badge/Scikit--Learn-Recommendation%20Engine-green)
 
-🔗 **Live App:** [skillsync-tech-role-recommendation-engine.streamlit.app](https://skillsync-tech-role-recommendation-engine.streamlit.app/)
+SkillSync is an AI-powered career recommendation engine that matches user skills with relevant technology job roles. Using **TF-IDF feature extraction** and **Cosine Similarity**, the system analyzes technical skill sets and recommends the most suitable career paths.
+
+The project includes comprehensive exploratory data analysis, feature engineering, recommendation logic, and an interactive Streamlit web application.
+
+**Live Demo:** https://skillsync-tech-role-recommendation-engine.streamlit.app/  </br>
+**GitHub Repository:** https://github.com/RadhikaKapoor383/SkillSync-Tech-Role-Recommendation-Engine
+
+---
+
+## Project Overview
+
+Choosing the right technology career path can be challenging for students and aspiring professionals. SkillSync addresses this problem by analyzing users' technical skills and recommending suitable job roles based on similarity to industry skill requirements.
+
+The recommendation engine leverages Natural Language Processing (NLP) techniques to compare user-entered skills against real-world technology roles.
+
+---
+
+## Features
+
+* AI-powered job role recommendation engine.
+* TF-IDF feature extraction for skill representation.
+* Cosine Similarity-based role matching.
+* Top-N ranked career recommendations.
+* Cold-start fallback recommendations.
+* Interactive Streamlit user interface.
+* Comprehensive exploratory data analysis.
+* Custom UI themes and responsive design.
+
+---
+
+## Recommendation Pipeline
+
+1. User enters technical skills.
+2. Skills are converted into TF-IDF vectors.
+3. Cosine Similarity calculates role relevance.
+4. Job roles are ranked based on similarity scores.
+5. Top matching roles are displayed.
+6. Popular roles are suggested when no direct matches exist.
+
+---
+
+## Tech Stack
+
+* Python
+* Pandas
+* Scikit-learn
+* Streamlit
+* Matplotlib
+* Seaborn
+* Jupyter Notebook
+
+---
 
 ## Project Structure
 
+
+
 ```
+
 SkillSync-Tech-Role-Recommendation-Engine/
 │
 ├── .streamlit/
@@ -36,52 +89,101 @@ SkillSync-Tech-Role-Recommendation-Engine/
 ├── App.py                       # Streamlit GUI
 ├── README.md
 └── requirements.txt
+
 ```
-
-## Features
-
-- Full EDA on an IT job roles & skills dataset (skill frequency, role complexity, description analysis)
-- TF-IDF based feature engineering that weighs rare/specific skills higher than generic ones
-- Cosine Similarity-based ranking engine with Top-N recommendations
-- Cold-start fallback for unmatched skill inputs
-- Interactive Streamlit GUI with a custom color theme
-
-## Tech Stack
-
-Python · pandas · scikit-learn · Streamlit · Matplotlib/Seaborn
+---
 
 ## How It Works
 
-1. **Ingestion** — user enters their skills
-2. **Scoring** — skills are converted into TF-IDF vectors and compared against every job role using Cosine Similarity
-3. **Sorting** — roles are ranked by similarity score, descending
-4. **Filtering** — only the Top-N best matches are returned
-5. **Cold-Start Fallback** — if no skill overlap is found, popular roles are suggested instead
-
-## Run Locally
-
-1. Clone the repository and install dependencies:
-   ```
-   pip install -r requirements.txt
-   ```
-
-2. (Optional) Re-run the notebook to regenerate the model artifacts:
-   ```
-   jupyter notebook notebook/Tech_Stack_Recommender.ipynb
-   ```
-
-3. Launch the app:
-   ```
-   streamlit run App.py
-   ```
-
-4. Open the local URL Streamlit prints (usually `http://localhost:8501`) in your browser.
-
-## Try It Online
-
-No installation needed — try the live deployed app here:
--> **https://skillsync-tech-role-recommendation-engine.streamlit.app/**
+1. **Skill Input**
+   The user enters their technical skills.
+2. **Feature Extraction**
+   Skills are transformed into TF-IDF vectors.
+3. **Similarity Calculation**
+   Cosine Similarity measures how closely user skills match each job role.
+4. **Recommendation Ranking**
+   Roles are ranked based on similarity scores.
+5. **Personalized Suggestions**
+   The Top-N most relevant technology roles are recommended.
+6. **Cold-Start Handling**
+   If no direct skill matches exist, the system recommends popular technology roles.
 
 ---
 
-Built for **DecodeLabs Project 3: AI Recommendation Logic** (Industrial Training Kit, Batch 2026).
+## Exploratory Data Analysis
+
+The project includes detailed analysis of:
+
+* Most demanded technical skills.
+* Skill distribution across job roles.
+* Certification requirements.
+* Role complexity analysis.
+* Description length analysis.
+* Technology trends in IT careers.
+
+---
+
+## Installation
+
+### Clone the repository
+
+```bash
+git clone https://github.com/RadhikaKapoor383/SkillSync-Tech-Role-Recommendation-Engine.git
+```
+
+### Install dependencies
+
+```bash
+pip install -r requirements.txt
+```
+
+### Launch the application
+
+```bash
+streamlit run App.py
+```
+
+---
+
+## Machine Learning Techniques
+
+* TF-IDF Vectorization
+* Cosine Similarity
+* Feature Engineering
+* Text Preprocessing
+* Content-Based Recommendation
+
+---
+
+## Future Improvements
+
+* Hybrid recommendation models.
+* User profile management.
+* Personalized career roadmaps.
+* Skill gap analysis.
+* Learning resource recommendations.
+* Resume-based job recommendations.
+
+---
+
+## Author
+
+**Radhika Kapoor**
+BS Computer Science Student
+Sukkur IBA University
+
+* GitHub: https://github.com/RadhikaKapoor383
+* LinkedIn: https://www.linkedin.com/in/radhika-kapoor2005/
+* Live Demo: https://skillsync-tech-role-recommendation-engine.streamlit.app/
+
+---
+
+## Support
+
+If you found this project useful, please consider giving it a star on GitHub.
+
+---
+
+## License
+
+This project is intended for educational, academic, and portfolio purposes.
